@@ -1,3 +1,28 @@
+= This fork
+
+This fork replaces BSON::ObjectId to auto incremented id in MongoMapper documents 
+
+This fork is based on https://github.com/phstc/mongomapper_id2
+
+It was submitted as pull request https://github.com/jnunemaker/mongomapper/pull/200
+
+== Usage
+
+    # app/models/movie.rb
+    class Movie
+      include MongoMapper::Document
+
+      key :title, String
+      # Here is the fork
+      auto_increment!
+    end
+
+    movie = Movie.create(:title => 'The Simpsons Movie')
+    movie.id # 1
+
+    movie2 = Movie.create(:title => 'Pirates of Silicon Valley')
+    movie2.id # 2
+
 = MongoMapper
 
 A Ruby Object Mapper for Mongo.
